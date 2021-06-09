@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('PullCode') {
-            steps {
-                echo 'Pull Code..'
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'AWel11', url: 'https://github.com/AWel11/EnglishPal.git']]])
-            }
-        }
         stage('MakeDatabasefile') {
 	    steps {
 	        sh 'touch ./app/static/wordfreqapp.db && rm -f ./app/static/wordfreqapp.db' 
