@@ -56,7 +56,7 @@ def test_next():
                 diffdict[current_essay_content] = 1
     
         for i in diffdict.values():
-            print(diffdict)
+            print(i,end = " ")
             assert i <= 4
     finally:
         driver.quit()
