@@ -54,7 +54,7 @@ def test_next():
                 diffdict[current_essay_content] += 1
             else:
                 diffdict[current_essay_content] = 1
-    
+        print(diffdict)
         for i in diffdict.values():
             print(i,end = " ")
             assert i <= 4
