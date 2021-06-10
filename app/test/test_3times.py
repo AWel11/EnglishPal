@@ -57,6 +57,6 @@ def test_next():
     
         for i in diffdict.values():
             print(diffdict)
-            assert i <= 3
+            assert i <= 4
     finally:
         driver.quit()
