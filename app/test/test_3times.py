@@ -39,7 +39,7 @@ def test_next():
         # get essay content
         driver.save_screenshot('./app/test/test_next_essay_pic0.png')    
         elem = driver.find_element_by_id('text-content')
-        essay_content = elem.text
+        essay_content = elem.text.strip()[120:300]
         diffdict[essay_content] = 0
         # click Next
         
@@ -48,7 +48,7 @@ def test_next():
             elem.click()
             driver.save_screenshot('./app/test/test_next_essay_pic1.png')
             elem = driver.find_element_by_id('text-content')
-            current_essay_content = elem.text
+            current_essay_content = elem.text.strip()[120:300]
     
             if current_essay_content in diffdict:
                 diffdict[current_essay_content] += 1
