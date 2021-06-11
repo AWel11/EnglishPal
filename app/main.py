@@ -109,9 +109,12 @@ def get_today_article(user_word_list, articleID):
             user_arti_freq_record = {}
         else:
             # delete articles from result that have already showed > 3 times
-            for article in result:
-                if article["article_id"] in user_arti_freq_record and user_arti_freq_record[article["article_id"]][0] = 3:
-                    result.remove(article)
+            index = 0
+            for i in range(len(result)):
+                article = result[index]
+                if article["article_id"] in user_arti_freq_record and user_arti_freq_record[article["article_id"]][0] > 3:
+                    result.pop(index)
+                else index += 1
     else:
         user_arti_freq_record = {}
 
