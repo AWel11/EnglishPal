@@ -22,12 +22,12 @@ pipeline {
 		sh 'sudo docker run -d -p 4444:4444 selenium/standalone-chrome'
 		sh 'pip3 install pytest -U -q'
 		sh 'pip3 install selenium -U -q'
-		sh 'python3 -m pytest -v -s ./app/test'
+		sh 'pytest -v -s --html=EnglishPalTestReport.html ./app/test'
             }
         }
         stage('DeployIt') {
             steps {
-                echo 'Deploying....'
+                echo 'Deploying (TBD)'
             }
         }
     }
