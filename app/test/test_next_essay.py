@@ -34,26 +34,29 @@ def test_next():
         elem.click()
     
         assert 'EnglishPal Study Room for ' + uname in  driver.title
-    
+
+        diffdict = {}
         # get essay content
         driver.save_screenshot('./app/test/test_next_essay_pic0.png')    
         elem = driver.find_element_by_id('text-content')
-        essay_content = elem.text
-    
+        essay_content = elem.text.strip()[120:300]
+        diffdict[essay_content] = 0
         # click Next
-        diff = 0
-        for i in range(5):
+        
+        for i in range(100):
             elem = driver.find_element_by_link_text('下一篇')
             elem.click()
             driver.save_screenshot('./app/test/test_next_essay_pic1.png')
             elem = driver.find_element_by_id('text-content')
-            current_essay_content = elem.text
+            current_essay_content = elem.text.strip()[120:300]
     
-            if current_essay_content != essay_content:
-                diff = 1
-                break
-    
-        assert diff == 1
+            if current_essay_content in diffdict:
+                diffdict[current_essay_content] += 1
+            else:
+                diffdict[current_essay_content] = 1
+        print(diffdict)
+        for i in diffdict.values():
+            print(i,end = " ")
+            assert i <= 3
     finally:
         driver.quit()
-
